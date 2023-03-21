@@ -9,7 +9,7 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch("https://kid-0.github.io/movie_api")
+    fetch("https://kid-0.github.io/movie_api/package.json")
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.docs.map((doc) => {
