@@ -27161,14 +27161,14 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
-        fetch("https://kid-0.github.io/movie_api/package.json").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.docs.map((doc)=>{
+        fetch("https://kid-0.github.io/movie_api/movies").then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.movies.map((movie)=>{
                 return {
-                    id: doc.key,
-                    title: doc.title,
-                    genre: doc.genre,
-                    description: doc.description,
-                    director: doc.director
+                    id: movie.id,
+                    title: movie.title,
+                    genre: movie.genre,
+                    description: movie.description,
+                    director: movie.director
                 };
             });
             setMovies(moviesFromApi);
