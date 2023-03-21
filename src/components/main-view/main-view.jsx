@@ -12,13 +12,14 @@ export const MainView = () => {
     fetch("https://myflixphilipp.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.movies.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
           return {
             id: movie.id,
-            title: movie.title,
+            image: movie.image,
+            title: movie.Title,
             genre: movie.genre,
-            description: movie.description,
-            director: movie.director
+            director: movie.director,
+            description: movie.Description
           };
         });
         setMovies(moviesFromApi);
