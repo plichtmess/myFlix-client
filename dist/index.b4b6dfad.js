@@ -27164,11 +27164,9 @@ const MainView = ()=>{
         fetch("https://myflixphilipp.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>{
                 return {
-                    id: movie.id,
-                    image: movie.image,
+                    id: movie._id,
+                    image: movie.ImagePath,
                     title: movie.Title,
-                    genre: movie.genre,
-                    director: movie.director,
                     description: movie.Description
                 };
             });
@@ -27180,14 +27178,14 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 31,
+        lineNumber: 29,
         columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "Movie List is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 39,
+        lineNumber: 37,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27198,12 +27196,12 @@ const MainView = ()=>{
                 }
             }, movie.id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 45,
+                lineNumber: 43,
                 columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 41,
         columnNumber: 5
     }, undefined);
 };
@@ -27246,13 +27244,6 @@ _c = MovieCard;
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         title: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string
-        }),
-        director: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            bio: (0, _propTypesDefault.default).string
-        }),
         description: (0, _propTypesDefault.default).string.isRequired
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
