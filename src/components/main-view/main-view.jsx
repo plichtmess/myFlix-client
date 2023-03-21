@@ -9,16 +9,16 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch("https://kid-0.github.io/movie_api/package.json")
+    fetch("https://kid-0.github.io/movie_api/movies")
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.docs.map((doc) => {
+        const moviesFromApi = data.movies.map((movie) => {
           return {
-            id: doc.key,
-            title: doc.title,
-            genre: doc.genre,
-            description: doc.description,
-            director: doc.director
+            id: movie.id,
+            title: movie.title,
+            genre: movie.genre,
+            description: movie.description,
+            director: movie.director
           };
         });
         setMovies(moviesFromApi);
