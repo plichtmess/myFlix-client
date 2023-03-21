@@ -27161,7 +27161,7 @@ const MainView = ()=>{
     const [movies, setMovies] = (0, _react.useState)([]);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
-        fetch("https://kid-0.github.io/movie_api/movies").then((response)=>response.json()).then((data)=>{
+        fetch("https://myflixphilipp.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.movies.map((movie)=>{
                 return {
                     id: movie.id,
