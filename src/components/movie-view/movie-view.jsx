@@ -1,8 +1,12 @@
+// import "./movie-view.scss";
+import Button from "react-bootstrap/Button";
+
+
 export const MovieView = ({ movie, onBackClick }) => {
   return (
     <div>
       <div>
-        <img src={movie.image} alt="Film Cover" />
+        <img className="w-100" src={movie.image} alt="Film Cover" />
       </div>
       <div>
         <span>Title: </span>
@@ -20,7 +24,7 @@ export const MovieView = ({ movie, onBackClick }) => {
         <span>Director: </span>
         <span>{movie.director}</span>
       </div>
-      <button onClick={onBackClick}>Back</button>
+      <Button variant="primary" className="mt-5" onClick={onBackClick} style={{ cursor: "pointer" }}>Back</Button>
     </div>
   );
 };
