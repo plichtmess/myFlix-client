@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
-export const UserUpdate = () => {
+export const UserUpdate = (token) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [username, setUsername] = useState("");
@@ -23,7 +23,7 @@ export const UserUpdate = () => {
     };
 
     fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}`, {
-      method: PUT,
+      method: "PUT",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +47,7 @@ export const UserUpdate = () => {
     };
 
     fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}`, {
-      method: DELETE,
+      method: "DELETE",
       body: JSON.stringify(data),
       headers: {
         "Content-Type": "application/json",

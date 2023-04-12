@@ -48041,7 +48041,7 @@ var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const UserUpdate = ()=>{
+const UserUpdate = (token)=>{
     _s();
     const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedToken = localStorage.getItem("token");
@@ -48058,7 +48058,7 @@ const UserUpdate = ()=>{
             Birthday: birthday
         };
         fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}`, {
-            method: PUT,
+            method: "PUT",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
@@ -48077,7 +48077,7 @@ const UserUpdate = ()=>{
             Username: username
         };
         fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}`, {
-            method: DELETE,
+            method: "DELETE",
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
