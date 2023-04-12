@@ -39,6 +39,30 @@ export const UserUpdate = () => {
     });
   };
 
+  const deleteUser = (event) => {
+    event.preventDefault();
+
+    const data = {
+      Username: username
+    };
+
+    fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}`, {
+      method: DELETE,
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    }).then(response => {
+      if (response.ok) {
+        alert("User was succesfully deleted");
+        window.location.reload();
+      } else {
+        alert("Failed deleting user");
+      }
+    });
+  };
+
   return (
     <>
       <Form onSubmit={handleSubmit}>
@@ -85,6 +109,7 @@ export const UserUpdate = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">Submit</Button>
+        <Button variant="secondary" onClick={deleteUser}>Delete Account</Button>
       </Form>
       <Link to={"/profile"}>
         <Button variant="primary" className="mt-5" style={{ cursor: "pointer" }}>Cancel</Button>
