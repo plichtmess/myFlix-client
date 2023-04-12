@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { Link } from "react-router-dom";
 
 export const UserUpdate = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -39,50 +40,55 @@ export const UserUpdate = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="updateUsername">
-        <Form.Label>Username:</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          minLength="5"
-        />
-      </Form.Group>
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="updateUsername">
+          <Form.Label>Username:</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            minLength="5"
+          />
+        </Form.Group>
 
-      <Form.Group controlId="updatePassword">
-        <Form.Label>Password:</Form.Label>
-        <Form.Control
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          minLength="5"
-        />
-      </Form.Group>
+        <Form.Group controlId="updatePassword">
+          <Form.Label>Password:</Form.Label>
+          <Form.Control
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            minLength="5"
+          />
+        </Form.Group>
 
-      <Form.Group controlId="updateEmail">
-        <Form.Label>Email:</Form.Label>
-        <Form.Control
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </Form.Group>
+        <Form.Group controlId="updateEmail">
+          <Form.Label>Email:</Form.Label>
+          <Form.Control
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-      <Form.Group controlId="updateBirthday">
-        <Form.Label>Birthday:</Form.Label>
-        <Form.Control
-          type="date"
-          value={birthday}
-          onChange={(e) => setBirthday(e.target.value)}
-          required
-        />
-      </Form.Group>
+        <Form.Group controlId="updateBirthday">
+          <Form.Label>Birthday:</Form.Label>
+          <Form.Control
+            type="date"
+            value={birthday}
+            onChange={(e) => setBirthday(e.target.value)}
+            required
+          />
+        </Form.Group>
 
-      <Button variant="primary" type="submit">Submit</Button>
-    </Form>
+        <Button variant="primary" type="submit">Submit</Button>
+      </Form>
+      <Link to={"/profile"}>
+        <Button variant="primary" className="mt-5" style={{ cursor: "pointer" }}>Cancel</Button>
+      </Link>
+    </>
   );
 };
