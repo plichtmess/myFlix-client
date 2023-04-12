@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie }) => {
   return (
     <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-      <Card className="h-100" /*onClick={() => onMovieClick(movie)}*/ variant="link">
+      <Card className="h-100" variant="link">
         <Card.Img variant="top" src={movie.image} />
         <Card.Body>
           <Card.Title className="card-title">{movie.title}</Card.Title>
@@ -22,7 +22,7 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 MovieCard.propTypes = {
   movie: PropTypes.shape({
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-  }).isRequired,
-  onMovieClick: PropTypes.func.isRequired
+    image: PropTypes.string.isRequired,
+    director: PropTypes.string
+  }).isRequired
 };
