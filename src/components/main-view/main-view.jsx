@@ -122,6 +122,22 @@ export const MainView = () => {
           />
         </Routes>
       </Row>
+            <Route
+              path="/users/update"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : (
+                    <>
+                      <Col className="mb-4">
+                        <UserUpdate />
+                      </Col>
+                    </>
+                  )}
+                </>
+              }
+            />
     </BrowserRouter>
   );
 };
