@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 export const UserUpdate = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -14,18 +16,19 @@ export const UserUpdate = () => {
 
     const data = {
       Username: username,
-      Password: password,
       Email: email,
+      Password: password,
       Birthday: birthday
     };
 
-    fetch("https://myflixphilipp.herokuapp.com/users/:Username", {
-      method: "PUT",
+    fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}`, {
+      method: PUT,
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       }
-    }).then((response) => {
+    }).then(response => {
       if (response.ok) {
         alert("Successfully updated User Information");
         window.location.reload();
