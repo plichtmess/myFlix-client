@@ -3,8 +3,6 @@ import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 export const ProfileView = (user, token) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
 
 
 
