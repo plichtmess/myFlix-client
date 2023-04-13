@@ -35,7 +35,13 @@ export const UserUpdate = () => {
       if (response.ok) {
         alert("Successfully updated User Information");
         window.location.reload();
-      } else {
+      }
+    }).then((data) => {
+      if (data.user) {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        window.location.reload();
+      }
+      else {
         alert("Failed updating User Information");
       }
     });
