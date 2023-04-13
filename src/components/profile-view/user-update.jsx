@@ -5,12 +5,14 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
 export const UserUpdate = (token) => {
+export const UserUpdate = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
