@@ -24,7 +24,7 @@ export const ProfileView = ({ movies }) => {
             <Card.Text>Email: {user.Email}</Card.Text>
             <Card.Text type="date">Birthday: {user.Birthday}</Card.Text>
             <Link to="/users/update">
-              <Button variant="link">Edit User Profile</Button>
+              <Button variant="primary">Edit User Profile</Button>
             </Link>
           </Card.Body>
         </Card>
