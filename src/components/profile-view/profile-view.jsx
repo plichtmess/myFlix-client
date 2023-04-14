@@ -4,11 +4,11 @@ import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ movies, user, token }) => {
+export const ProfileView = ({ favoriteMovies, user, token }) => {
 
   // console.log(movies);
-  // console.log(user);
-  let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
+  console.log(user);
+  // let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
 
   return (
     <Container>
@@ -29,8 +29,8 @@ export const ProfileView = ({ movies, user, token }) => {
           <h1>Favorite Movies</h1>
         </Col>
         {favoriteMovies.map((movie) => (
-          <Col className="mb-4" key={movie.id} md={3}>
-            <MovieCard movie={movie} />
+          <Col className="mb-4" key={movie._id} md={3}>
+            <MovieCard favoriteMovies={favoriteMovies} />
           </Col>
         ))}
       </Row>

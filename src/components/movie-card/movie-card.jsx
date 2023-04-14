@@ -10,7 +10,7 @@ export const MovieCard = ({ user, movie, token }) => {
 
   const addFav = () => {
     fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
-      method: "POST",
+      method: "PUT",
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -25,10 +25,11 @@ export const MovieCard = ({ user, movie, token }) => {
           alert("Movie was added to favorites");
         }
       })
+      .catch((e) => console.error(e));
   };
 
   const deleteFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}/movies/${movie._id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -43,16 +44,17 @@ export const MovieCard = ({ user, movie, token }) => {
         if (user) {
           alert("Movie was deleted from favorites");
         }
-      });
+      })
+      .catch((e) => console.error(e));
   };
 
   return (
-    <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+    <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
       <Card className="h-100" variant="link">
         <Card.Img variant="top" src={movie.image} />
         <Card.Body>
-          <Card.Title className="card-title">{movie.Title}</Card.Title>
-          <Card.Text className="card-text">{movie.Director}</Card.Text>
+          <Card.Title className="card-title">{movie.title}</Card.Title>
+          <Card.Text className="card-text">{movie.director}</Card.Text>
           <Button onClick={addFav}>Add to Favorites</Button>
           <Button onClick={deleteFav}>Delete from Favorites</Button>
         </Card.Body>
@@ -62,7 +64,7 @@ export const MovieCard = ({ user, movie, token }) => {
 };
 
 MovieCard.propTypes = {
-  movie: PropTypes.shape({
+  movies: PropTypes.shape({
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,

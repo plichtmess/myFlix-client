@@ -17,6 +17,9 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
 
+  let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
+
+
   useEffect(() => {
     if (!token) {
       return;
@@ -39,7 +42,8 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
-      });
+      })
+      .catch((e) => console.error(e));
   }, [token]);
 
   return (
@@ -114,7 +118,7 @@ export const MainView = () => {
                   ) : (
                     <>
                       {movies.map((movie) => (
-                        <Col className="mb-4" key={movie.id} md={3}>
+                        <Col className="mb-4" key={movie._id} md={3}>
                           <MovieCard
                             user={user}
                             movie={movie}
@@ -138,7 +142,7 @@ export const MainView = () => {
                       <Col className="mb-4">
                         <ProfileView
                           user={user}
-                          movies={movies}
+                          favoriteMovies={favoriteMovies}
                           token={token}
                         />
                       </Col>

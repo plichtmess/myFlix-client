@@ -31,7 +31,11 @@ export const SignupView = () => {
       } else {
         alert("Signup failed");
       }
-    });
+    }).then(() => {
+      localStorage.clear();
+      window.location.reload(true);
+    })
+      .catch((e) => console.error(e));
   };
 
   return (

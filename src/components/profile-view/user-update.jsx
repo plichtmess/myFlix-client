@@ -4,15 +4,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 
-export const UserUpdate = ({ onLoggedOut }) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
+export const UserUpdate = ({ user, token, onLoggedOut }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
-  const [token, setToken] = useState(storedToken ? storedToken : null);
-  const [user, setUser] = useState(storedUser ? storedUser : null);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -75,12 +71,10 @@ export const UserUpdate = ({ onLoggedOut }) => {
       //     alert("Failed deleting user");
       //   }
       // })
-    }).then((user) => {
-      if (user) {
-        onLoggedOut(user);
-      }
     })
       .catch((e) => console.error(e));
+
+    onLoggedOut();
   };
 
   return (
