@@ -4,14 +4,10 @@ import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = (movies) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
-  const [user, setUser] = useState(storedUser ? storedUser : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+export const ProfileView = ({ movies, user, token }) => {
 
-  console.log(movies);
-  console.log(user);
+  // console.log(movies);
+  // console.log(user);
   let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
 
   return (

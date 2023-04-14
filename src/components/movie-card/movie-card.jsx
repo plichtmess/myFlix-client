@@ -6,13 +6,10 @@ import { Link } from "react-router-dom";
 
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie }) => {
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-  const storedToken = localStorage.getItem("token");
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+export const MovieCard = ({ user, movie, token }) => {
 
   const addFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.Username}/movies/${movie.id}`, {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -31,7 +28,7 @@ export const MovieCard = ({ movie }) => {
   };
 
   const deleteFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.Username}/movies/${movie.id}`, {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}/movies/${movie.id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -54,8 +51,8 @@ export const MovieCard = ({ movie }) => {
       <Card className="h-100" variant="link">
         <Card.Img variant="top" src={movie.image} />
         <Card.Body>
-          <Card.Title className="card-title">{movie.title}</Card.Title>
-          <Card.Text className="card-text">{movie.director}</Card.Text>
+          <Card.Title className="card-title">{movie.Title}</Card.Title>
+          <Card.Text className="card-text">{movie.Director}</Card.Text>
           <Button onClick={addFav}>Add to Favorites</Button>
           <Button onClick={deleteFav}>Delete from Favorites</Button>
         </Card.Body>

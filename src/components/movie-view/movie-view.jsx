@@ -3,8 +3,10 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 
-export const MovieView = ({ movies, user, token }) => {
+export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
+
+  console.log(movieId);
 
   const movie = movies.find((m) => m._id === movieId);
 
@@ -37,11 +39,14 @@ export const MovieView = ({ movies, user, token }) => {
 };
 
 MovieView.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
+  movies: PropTypes.arrayOf({
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
-  }).isRequired)
+    genre: PropTypes.shape({
+      name: PropTypes.string
+    }).isRequired,
+    director: PropTypes.shape({
+      name: PropTypes.string
+    }).isRequired
+  }).isRequired
 };
