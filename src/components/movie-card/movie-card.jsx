@@ -1,17 +1,19 @@
 import React from "react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 import "./movie-card.scss";
 
-export const MovieCard = ({ movie, token }) => {
+export const MovieCard = ({ movie }) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
+  const [token, setToken] = useState(storedToken ? storedToken : null);
 
   const addFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.username}/movies/${movie.id}`, {
-      method: "PUT",
+    fetch(`https://myflixphilipp.herokuapp.com/users/${storedUser.Username}/movies/${movie.id}`, {
+      method: "POST",
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(response => {
@@ -48,7 +50,7 @@ export const MovieCard = ({ movie, token }) => {
   };
 
   return (
-    <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+    <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
       <Card className="h-100" variant="link">
         <Card.Img variant="top" src={movie.image} />
         <Card.Body>
@@ -64,6 +66,7 @@ export const MovieCard = ({ movie, token }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     director: PropTypes.string

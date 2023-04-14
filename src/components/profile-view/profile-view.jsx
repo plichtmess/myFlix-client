@@ -1,19 +1,18 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ movies }) => {
+export const ProfileView = (movies) => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
   const storedToken = localStorage.getItem("token");
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
-  let favoriteMovies = () => {
-    if (movies) {
-      movies.filter(m => user.FavoriteMovies.includes(m._id));
-    }
-  };
+  console.log(movies);
+  console.log(user);
+  let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
 
   return (
     <Container>
@@ -30,8 +29,15 @@ export const ProfileView = ({ movies }) => {
         </Card>
       </Row>
       <Row>
-        <h1>Favorite Movies</h1>
+        <Col>
+          <h1>Favorite Movies</h1>
+        </Col>
+        {favoriteMovies.map((movie) => (
+          <Col className="mb-4" key={movie.id} md={3}>
+            <MovieCard movie={movie} />
+          </Col>
+        ))}
       </Row>
-    </Container>
+    </Container >
   )
 }
