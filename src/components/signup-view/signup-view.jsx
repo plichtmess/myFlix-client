@@ -11,10 +11,10 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      username,
-      password,
-      email,
-      birthday
+      username: username,
+      password: password,
+      email: email,
+      birthday: birthday
     };
 
     fetch("https://myflixphilipp.herokuapp.com/users", {
