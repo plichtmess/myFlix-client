@@ -11,10 +11,10 @@ export const SignupView = () => {
     event.preventDefault();
 
     const data = {
-      username: username,
-      password: password,
-      email: email,
-      birthday: birthday
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
     };
 
     fetch("https://myflixphilipp.herokuapp.com/users", {
@@ -29,6 +29,7 @@ export const SignupView = () => {
       } else {
         alert("Signup failed");
       }
+      return response.json();
     }).then(() => {
       localStorage.clear();
       window.location.reload(true);
