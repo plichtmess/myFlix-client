@@ -1,30 +1,102 @@
-// import "./movie-view.scss";
-import Button from "react-bootstrap/Button";
+import PropTypes from "prop-types";
+import { Button, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import { MovieCard } from "../movie-card/movie-card";
+import { useEffect, useState } from "react";
+
+export const MovieView = ({ movies, user, token, updateUser }) => {
+  const { movieId } = useParams();
+  const movie = movies.find(m => m.id === movieId);
+
+  const [favorite, setFavorite] = useState(user.FavoriteMovies.includes(movie.id));
+
+  useEffect(() => {
+    setFavorite(user.FavoriteMovies.includes(movie.id));
+  }, [movieId]);
+
+  const addFav = () => {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token} ` }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed");
+          return false;
+        }
+      })
+      .then(user => {
+        if (user) {
+          alert("Movie added to favorites");
+          setFavorite(true);
+          updateUser(user);
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
+
+  const deleteFav = () => {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed");
+          return false;
+        }
+      })
+      .then(user => {
+        if (user) {
+          alert("Deleted movie from favorites");
+          setFavorite(false);
+          updateUser(user);
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
 
 
-export const MovieView = ({ movie, onBackClick }) => {
   return (
-    <div>
-      <div>
-        <img className="w-100" src={movie.image} alt="Film Cover" />
-      </div>
-      <div>
-        <span>Title: </span>
-        <span>{movie.title}</span>
-      </div>
-      <div>
-        <span>Genre: </span>
-        <span>{movie.genre}</span>
-      </div>
-      <div>
-        <span>Description: </span>
-        <span>{movie.description}</span>
-      </div>
-      <div>
-        <span>Director: </span>
-        <span>{movie.director}</span>
-      </div>
-      <Button variant="primary" className="mt-5" onClick={onBackClick} style={{ cursor: "pointer" }}>Back</Button>
-    </div>
+    <>
+      <Col md={12}>
+        <div>
+          <img className="w-100" src={movie.image} alt="Film Cover" />
+          <h2>{movie.title}</h2>
+          <p>{movie.description}</p>
+          <h4>{movie.genre}</h4>
+          <h4>{movie.director.Name}</h4>
+          <Link to={`/`}>
+            <Button variant="primary" className="mt-5" style={{ cursor: "pointer" }}>Back</Button>
+          </Link>
+          {isFavorite ?
+            <Button variant="primary" onClick={deleteFav}>Delete from favorite movies</Button>
+            : <Button variant="primary" onClick={addFav}>Add to favorite movies</Button>
+          }
+        </div>
+      </Col>
+
+
+    </>
   );
+};
+
+MovieView.propTypes = {
+  movies: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    director: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired
+  }).isRequired)
 };
