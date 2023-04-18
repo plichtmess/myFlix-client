@@ -47472,8 +47472,8 @@ const LoginView = ({ onLoggedIn  })=>{
         //prevents the default behavior to not reload the entire page
         event.preventDefault();
         const data = {
-            username,
-            password
+            username: username,
+            password: password
         };
         fetch("https://myflixphilipp.herokuapp.com/login", {
             method: "POST",
@@ -47621,10 +47621,10 @@ const SignupView = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            username,
-            password,
-            email,
-            birthday
+            username: username,
+            password: password,
+            email: email,
+            birthday: birthday
         };
         fetch("https://myflixphilipp.herokuapp.com/users", {
             method: "POST",

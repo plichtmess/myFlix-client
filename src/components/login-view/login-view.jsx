@@ -11,8 +11,8 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      username,
-      password
+      username: username,
+      password: password
     };
 
     fetch("https://myflixphilipp.herokuapp.com/login", {
