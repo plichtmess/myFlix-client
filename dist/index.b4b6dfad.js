@@ -47599,10 +47599,10 @@ const SignupView = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            username: username,
-            password: password,
-            email: email,
-            birthday: birthday
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
         };
         fetch("https://philippmyflix.onrender.com/users", {
             method: "POST",
