@@ -27163,8 +27163,8 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MainView", ()=>MainView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
-var _movieView = require("../movie-view/movie-view");
 var _movieCard = require("../movie-card/movie-card");
+var _movieView = require("../movie-view/movie-view");
 var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _navigationBar = require("../navigation-bar/navigation-bar");
@@ -27187,19 +27187,19 @@ const MainView = ()=>{
     };
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://myflixphilipp.herokuapp.com/movies", {
+        fetch("https://philippmyflix.onrender.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((response)=>response.json()).then((movies)=>{
-            const moviesFromApi = movies.map((movie)=>{
+        }).then((response)=>response.json()).then((data)=>{
+            const moviesFromApi = data.movies.map((movie)=>{
                 return {
-                    id: movie._id,
-                    image: movie.imagePath,
-                    title: movie.title,
-                    genre: movie.genre.Name,
-                    director: movie.director.Name,
-                    description: movie.description
+                    id: movie.key,
+                    image: movie.ImagePath,
+                    title: movie.Title,
+                    genre: movie.Genre.Name,
+                    director: movie.Director.Name,
+                    description: movie.Description
                 };
             });
             setMovies(moviesFromApi);
@@ -27277,9 +27277,7 @@ const MainView = ()=>{
                                     }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                         md: 8,
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                                            movies: movies,
-                                            user: user,
-                                            token: token
+                                            movies: movies
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false)
@@ -27308,7 +27306,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 120,
+                                lineNumber: 118,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27335,7 +27333,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 142,
+                                lineNumber: 140,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27361,7 +27359,7 @@ const MainView = ()=>{
                                 }, void 0, false)
                             }, void 0, false, {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 167,
+                                lineNumber: 165,
                                 columnNumber: 13
                             }, undefined)
                         ]
@@ -27457,8 +27455,9 @@ const MovieCard = ({ movie  })=>{
 };
 _c = MovieCard;
 MovieCard.propTypes = {
-    movies: (0, _propTypesDefault.default).shape({
-        title: (0, _propTypesDefault.default).string.isRequired
+    movie: (0, _propTypesDefault.default).shape({
+        title: (0, _propTypesDefault.default).string.isRequired,
+        image: (0, _propTypesDefault.default).string.isRequired
     }).isRequired
 };
 var _c;
@@ -43003,15 +43002,12 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MovieView", ()=>MovieView);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _reactRouter = require("react-router");
-var _movieCard = require("../movie-card/movie-card");
 var _react = require("react");
 var _s = $RefreshSig$();
-const MovieView = ({ movies , user , token , updateUser  })=>{
+const MovieView = ({ movies  })=>{
     _s();
     const { movieId  } = (0, _reactRouter.useParams)();
     const movie = movies.find((m)=>m.id === movieId);
@@ -43022,7 +43018,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         movieId
     ]);
     const addFav = ()=>{
-        fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token} `
@@ -43033,18 +43029,18 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                 alert("Failed");
                 return false;
             }
-        }).then((user)=>{
-            if (user) {
+        }).then((user1)=>{
+            if (user1) {
                 alert("Movie added to favorites");
                 setFavorite(true);
-                updateUser(user);
+                updateUser(user1);
             }
         }).catch((e)=>{
             console.error(e);
         });
     };
     const deleteFav = ()=>{
-        fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -43055,11 +43051,11 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                 alert("Failed");
                 return false;
             }
-        }).then((user)=>{
-            if (user) {
+        }).then((user1)=>{
+            if (user1) {
                 alert("Deleted movie from favorites");
                 setFavorite(false);
-                updateUser(user);
+                updateUser(user1);
             }
         }).catch((e)=>{
             console.error(e);
@@ -43076,35 +43072,35 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         alt: "Film Cover"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 73,
+                        lineNumber: 72,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                         children: movie.title
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 74,
+                        lineNumber: 73,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                         children: movie.description
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 75,
+                        lineNumber: 74,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                         children: movie.genre
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 76,
+                        lineNumber: 75,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h4", {
                         children: movie.director.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 77,
+                        lineNumber: 76,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -43118,12 +43114,12 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                             children: "Back"
                         }, void 0, false, {
                             fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 79,
+                            lineNumber: 78,
                             columnNumber: 13
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 78,
+                        lineNumber: 77,
                         columnNumber: 11
                     }, undefined),
                     isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
@@ -43132,7 +43128,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: "Delete from favorite movies"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 82,
+                        lineNumber: 81,
                         columnNumber: 13
                     }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "primary",
@@ -43140,38 +43136,37 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                         children: "Add to favorite movies"
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 83,
+                        lineNumber: 82,
                         columnNumber: 15
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 72,
+                lineNumber: 71,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
             fileName: "src/components/movie-view/movie-view.jsx",
-            lineNumber: 71,
+            lineNumber: 70,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
-};
+}; // MovieView.propTypes = {
+ //   movies: PropTypes.arrayOf(PropTypes.shape({
+ //     id: PropTypes.string.isRequired,
+ //     title: PropTypes.string.isRequired,
+ //     description: PropTypes.string.isRequired,
+ //     genre: PropTypes.string.isRequired,
+ //     director: PropTypes.string.isRequired,
+ //     image: PropTypes.string.isRequired
+ //   }).isRequired)
+ // };
 _s(MovieView, "rRFDObDXVvtxAQXFOUv+TQ2631Q=", false, function() {
     return [
         (0, _reactRouter.useParams)
     ];
 });
 _c = MovieView;
-MovieView.propTypes = {
-    movies: (0, _propTypesDefault.default).arrayOf((0, _propTypesDefault.default).shape({
-        id: (0, _propTypesDefault.default).string.isRequired,
-        title: (0, _propTypesDefault.default).string.isRequired,
-        description: (0, _propTypesDefault.default).string.isRequired,
-        genre: (0, _propTypesDefault.default).string.isRequired,
-        director: (0, _propTypesDefault.default).string.isRequired,
-        image: (0, _propTypesDefault.default).string.isRequired
-    }).isRequired)
-};
 var _c;
 $RefreshReg$(_c, "MovieView");
 
@@ -43180,7 +43175,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"3XyWm","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"0sY4y","prop-types":"7wKI2","react-router":"dbWyW","react-router-dom":"fdOAw","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","react":"21dqq"}],"dbWyW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"3XyWm","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"0sY4y","react-router":"dbWyW","react-router-dom":"fdOAw","react-bootstrap":"3AD9A","react":"21dqq"}],"dbWyW":[function(require,module,exports) {
 /**
  * React Router v6.10.0
  *
@@ -47475,8 +47470,8 @@ const LoginView = ({ onLoggedIn  })=>{
         //prevents the default behavior to not reload the entire page
         event.preventDefault();
         const data = {
-            username: username,
-            password: password
+            Username: username,
+            Password: password
         };
         fetch("https://myflixphilipp.herokuapp.com/login", {
             method: "POST",
@@ -47604,10 +47599,10 @@ const SignupView = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            username: username,
-            password: password,
-            email: email,
-            birthday: birthday
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
         };
         fetch("https://myflixphilipp.herokuapp.com/users", {
             method: "POST",

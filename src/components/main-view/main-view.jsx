@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
+import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
@@ -28,20 +28,20 @@ export const MainView = () => {
       return;
     }
 
-    fetch("https://myflixphilipp.herokuapp.com/movies",
+    fetch("https://philippmyflix.onrender.com/movies",
       {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((response) => response.json())
-      .then((movies) => {
-        const moviesFromApi = movies.map((movie) => {
+      .then((data) => {
+        const moviesFromApi = data.movies.map((movie) => {
           return {
-            id: movie._id,
-            image: movie.imagePath,
-            title: movie.title,
-            genre: movie.genre.Name,
-            director: movie.director.Name,
-            description: movie.description
+            id: movie.key,
+            image: movie.ImagePath,
+            title: movie.Title,
+            genre: movie.Genre.Name,
+            director: movie.Director.Name,
+            description: movie.Description
           };
         });
         setMovies(moviesFromApi);
@@ -109,8 +109,6 @@ export const MainView = () => {
                     <Col md={8}>
                       <MovieView
                         movies={movies}
-                        user={user}
-                        token={token}
                       />
                     </Col>
                   )}
@@ -127,7 +125,7 @@ export const MainView = () => {
                     <Col>The list is empty!</Col>
                   ) : (
                     <>
-                      {listMovies.map(movie => (
+                      {listMovies.map((movie) => (
                         <Col className="mb-4" key={movie.id} md={3}>
                           <MovieCard
                             movie={movie}

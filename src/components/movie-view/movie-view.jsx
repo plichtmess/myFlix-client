@@ -1,13 +1,12 @@
-import PropTypes from "prop-types";
 import { Button, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
-import { MovieCard } from "../movie-card/movie-card";
 import { useEffect, useState } from "react";
 
-export const MovieView = ({ movies, user, token, updateUser }) => {
+export const MovieView = ({ movies }) => {
   const { movieId } = useParams();
-  const movie = movies.find(m => m.id === movieId);
+
+  const movie = movies.find((m) => m.id === movieId);
 
   const [favorite, setFavorite] = useState(user.FavoriteMovies.includes(movie.id));
 
@@ -16,7 +15,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
   }, [movieId]);
 
   const addFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+    fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token} ` }
     })
@@ -41,7 +40,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
   }
 
   const deleteFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+    fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })
@@ -90,13 +89,13 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
   );
 };
 
-MovieView.propTypes = {
-  movies: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    director: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired
-  }).isRequired)
-};
+// MovieView.propTypes = {
+//   movies: PropTypes.arrayOf(PropTypes.shape({
+//     id: PropTypes.string.isRequired,
+//     title: PropTypes.string.isRequired,
+//     description: PropTypes.string.isRequired,
+//     genre: PropTypes.string.isRequired,
+//     director: PropTypes.string.isRequired,
+//     image: PropTypes.string.isRequired
+//   }).isRequired)
+// };
