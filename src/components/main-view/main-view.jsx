@@ -37,11 +37,11 @@ export const MainView = () => {
         const moviesFromApi = movies.map((movie) => {
           return {
             id: movie._id,
-            image: movie.ImagePath,
-            title: movie.Title,
-            genre: movie.Genre.Name,
-            director: movie.Director.Name,
-            description: movie.Description
+            image: movie.imagePath,
+            title: movie.title,
+            genre: movie.genre.Name,
+            director: movie.director.Name,
+            description: movie.description
           };
         });
         setMovies(moviesFromApi);
