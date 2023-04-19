@@ -5,11 +5,10 @@ import { MainView } from './components/main-view/main-view';
 
 import Container from "react-bootstrap/Container";
 
-import "./index.scss";
-
 // import "bootstrap/dist/css/bootstrap.min.css";
 
 // import statement to indicate that `./index.scss` needs to be bundled
+import "./index.scss";
 
 // main component (will eventually use all the others)
 const App = () => {
