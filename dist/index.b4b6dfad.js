@@ -47472,8 +47472,8 @@ const LoginView = ({ onLoggedIn  })=>{
         //prevents the default behavior to not reload the entire page
         event.preventDefault();
         const data = {
-            Username: username,
-            Password: password
+            username: username,
+            password: password
         };
         fetch("https://myflixphilipp.herokuapp.com/login", {
             method: "POST",
