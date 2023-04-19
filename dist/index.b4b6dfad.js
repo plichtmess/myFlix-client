@@ -47470,10 +47470,10 @@ const LoginView = ({ onLoggedIn  })=>{
         //prevents the default behavior to not reload the entire page
         event.preventDefault();
         const data = {
-            Username: username,
-            Password: password
+            username: username,
+            password: password
         };
-        fetch("https://myflixphilipp.herokuapp.com/login", {
+        fetch("https://philippmyflix.onrender.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -47599,12 +47599,12 @@ const SignupView = ()=>{
     const handleSubmit = (event)=>{
         event.preventDefault();
         const data = {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday
+            username: username,
+            password: password,
+            email: email,
+            birthday: birthday
         };
-        fetch("https://myflixphilipp.herokuapp.com/users", {
+        fetch("https://philippmyflix.onrender.com/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -47925,7 +47925,7 @@ const UserUpdate = ({ user , token , onLoggedOut  })=>{
             Password: password,
             Birthday: birthday
         };
-        fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}`, {
+        fetch(`https://philippmyflix.onrender.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {
