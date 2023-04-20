@@ -43060,7 +43060,7 @@ const MovieView = ({ movies  })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                         to: `/`,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "primary",
                             className: "mt-5",
                             style: {
@@ -43077,7 +43077,7 @@ const MovieView = ({ movies  })=>{
                         lineNumber: 71,
                         columnNumber: 11
                     }, undefined),
-                    isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                    isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "primary",
                         onClick: deleteFav,
                         children: "Delete from favorite movies"
@@ -43085,7 +43085,7 @@ const MovieView = ({ movies  })=>{
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 75,
                         columnNumber: 13
-                    }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                    }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                         variant: "primary",
                         onClick: addFav,
                         children: "Add to favorite movies"
