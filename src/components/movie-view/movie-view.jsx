@@ -15,7 +15,7 @@ export const MovieView = ({ movies }) => {
   }, [movieId]);
 
   const addFav = () => {
-    fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token} ` }
     })
@@ -40,7 +40,7 @@ export const MovieView = ({ movies }) => {
   }
 
   const deleteFav = () => {
-    fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` }
     })

@@ -28,7 +28,7 @@ export const MainView = () => {
       return;
     }
 
-    fetch("https://philippmyflix.onrender.com/movies",
+    fetch("https://myflixphilipp.herokuapp.com/movies",
       {
         headers: { Authorization: `Bearer ${token}` }
       })

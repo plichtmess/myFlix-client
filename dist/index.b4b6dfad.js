@@ -27187,7 +27187,7 @@ const MainView = ()=>{
     };
     (0, _react.useEffect)(()=>{
         if (!token) return;
-        fetch("https://philippmyflix.onrender.com/movies", {
+        fetch("https://myflixphilipp.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -43018,7 +43018,7 @@ const MovieView = ({ movies  })=>{
         movieId
     ]);
     const addFav = ()=>{
-        fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token} `
@@ -43040,7 +43040,7 @@ const MovieView = ({ movies  })=>{
         });
     };
     const deleteFav = ()=>{
-        fetch(`https://philippmyflix.onrender.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "DELETE",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -47473,7 +47473,7 @@ const LoginView = ({ onLoggedIn  })=>{
             username: username,
             password: password
         };
-        fetch("https://philippmyflix.onrender.com/login", {
+        fetch("https://myflixphilipp.herokuapp.com/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -47604,7 +47604,7 @@ const SignupView = ()=>{
             Email: email,
             Birthday: birthday
         };
-        fetch("https://philippmyflix.onrender.com/users", {
+        fetch("https://myflixphilipp.herokuapp.com/users", {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -47925,7 +47925,7 @@ const UserUpdate = ({ user , token , onLoggedOut  })=>{
             Password: password,
             Birthday: birthday
         };
-        fetch(`https://philippmyflix.onrender.com/users/${user.Username}`, {
+        fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}`, {
             method: "PUT",
             body: JSON.stringify(data),
             headers: {

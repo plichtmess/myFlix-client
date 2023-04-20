@@ -20,7 +20,7 @@ export const UserUpdate = ({ user, token, onLoggedOut }) => {
       Birthday: birthday
     };
 
-    fetch(`https://philippmyflix.onrender.com/users/${user.Username}`, {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.Username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
