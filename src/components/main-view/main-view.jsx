@@ -11,17 +11,22 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 // create and export the MainView component
 export const MainView = () => {
+  const storedUser = localStorage.getItem("user");
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(storedUser ? JSON.parse(storedUser) : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+
 
   useEffect(() => {
+    if (!token) return;
 
     fetch("https://myflixphilipp.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((movie) => {
           return {
-            id: movie.key,
+            id: movie._id,
             image: movie.ImagePath,
             title: movie.Title,
             genre: movie.Genre.Name,
@@ -31,7 +36,9 @@ export const MainView = () => {
         });
         setMovies(moviesFromApi);
       });
-  }, []);
+  }, [token]);
+
+  console.log(movies);
 
   return (
     <BrowserRouter>
@@ -68,7 +75,11 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Col md={5}>
-                      <LoginView onLoggedIn={(user) => setUser(user)} />
+                      <LoginView onLoggedIn={(user, token) => {
+                        setUser(user);
+                        setToken(token);
+                      }}
+                      />
                     </Col>
                   )}
                 </>
@@ -86,6 +97,8 @@ export const MainView = () => {
                     <Col md={8}>
                       <MovieView
                         movies={movies}
+                        user={user}
+                        token={token}
                       />
                     </Col>
                   )}
@@ -125,12 +138,37 @@ export const MainView = () => {
                       <Col className="mb-4">
                         <ProfileView
                           user={user}
+                          token={token}
+                          movies={movies}
                           onLoggedOut={() => {
                             setUser(null);
                             setToken(null);
                             localStorage.clear();
                           }}
                         />
+                      </Col>
+                    </>
+                  )}
+                </>
+              }
+            />
+            <Route
+              path="users/update"
+              element={
+                <>
+                  {!user ? (
+                    <Navigate to="/login" replace />
+                  ) : (
+                    <>
+                      <Col className="mb-4">
+                        <UserUpdate
+                          user={user}
+                          token={token}
+                          onLoggedOut={() => {
+                            setUser(null);
+                            setToken(null);
+                            localStorage.clear();
+                          }} />
                       </Col>
                     </>
                   )}

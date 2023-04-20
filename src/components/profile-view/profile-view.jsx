@@ -4,11 +4,20 @@ import { Row, Col, Container, Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const ProfileView = ({ favoriteMovies, user, token }) => {
+export const ProfileView = ({ user, token, movies, onLoggedOut }) => {
 
-  // console.log(movies);
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [birthday, setBirthday] = useState("");
+
+  console.log(movies);
   console.log(user);
-  // let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
+  console.log(user.Username);
+
+  let favoriteMovies = movies.filter(movie => user.FavoriteMovies.includes(movie.id));
+
+  console.log(favoriteMovies);
 
   return (
     <Container>
@@ -29,8 +38,8 @@ export const ProfileView = ({ favoriteMovies, user, token }) => {
           <h1>Favorite Movies</h1>
         </Col>
         {favoriteMovies.map((movie) => (
-          <Col className="mb-4" key={movie._id} md={3}>
-            <MovieCard favoriteMovies={favoriteMovies} />
+          <Col className="mb-4" key={movie.id} md={3}>
+            <MovieCard movie={movie} />
           </Col>
         ))}
       </Row>
