@@ -43076,23 +43076,6 @@ const MovieView = ({ movies  })=>{
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 71,
                         columnNumber: 11
-                    }, undefined),
-                    isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        variant: "primary",
-                        onClick: deleteFav,
-                        children: "Delete from favorite movies"
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 75,
-                        columnNumber: 13
-                    }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                        variant: "primary",
-                        onClick: addFav,
-                        children: "Add to favorite movies"
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 76,
-                        columnNumber: 15
                     }, undefined)
                 ]
             }, void 0, true, {

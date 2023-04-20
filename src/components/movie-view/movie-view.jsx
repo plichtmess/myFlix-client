@@ -71,10 +71,10 @@ export const MovieView = ({ movies }) => {
           <Link to={`/`}>
             <Button variant="primary" className="mt-5" style={{ cursor: "pointer" }}>Back</Button>
           </Link>
-          {isFavorite ?
+          {/* {isFavorite ?
             <Button variant="primary" onClick={deleteFav}>Delete from favorite movies</Button>
             : <Button variant="primary" onClick={addFav}>Add to favorite movies</Button>
-          }
+          } */}
         </div>
       </Col>
     </>
