@@ -1,6 +1,5 @@
-import { Button, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 export const MovieView = ({ movies }) => {
@@ -8,68 +7,62 @@ export const MovieView = ({ movies }) => {
 
   const movie = movies.find((m) => m.id === movieId);
 
-  const [favorite, setFavorite] = useState(user.FavoriteMovies.includes(movie.id));
+  // const addFav = () => {
+  //   fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+  //     method: "POST",
+  //     headers: { Authorization: `Bearer ${token} ` }
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         alert("Failed");
+  //         return false;
+  //       }
+  //     })
+  //     .then(user => {
+  //       if (user) {
+  //         alert("Movie added to favorites");
+  //         setFavorite(true);
+  //         updateUser(user);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       console.error(e);
+  //     });
+  // }
 
-  useEffect(() => {
-    setFavorite(user.FavoriteMovies.includes(movie.id));
-  }, [movieId]);
-
-  const addFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token} ` }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("Failed");
-          return false;
-        }
-      })
-      .then(user => {
-        if (user) {
-          alert("Movie added to favorites");
-          setFavorite(true);
-          updateUser(user);
-        }
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  }
-
-  const deleteFav = () => {
-    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${token}` }
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          alert("Failed");
-          return false;
-        }
-      })
-      .then(user => {
-        if (user) {
-          alert("Deleted movie from favorites");
-          setFavorite(false);
-          updateUser(user);
-        }
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  }
+  // const deleteFav = () => {
+  //   fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+  //     method: "DELETE",
+  //     headers: { Authorization: `Bearer ${token}` }
+  //   })
+  //     .then(response => {
+  //       if (response.ok) {
+  //         return response.json();
+  //       } else {
+  //         alert("Failed");
+  //         return false;
+  //       }
+  //     })
+  //     .then(user => {
+  //       if (user) {
+  //         alert("Deleted movie from favorites");
+  //         setFavorite(false);
+  //         updateUser(user);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       console.error(e);
+  //     });
+  // }
 
 
   return (
     <>
       <Col md={12}>
         <div>
-          <img className="w-100" src={movie.image} alt="Film Cover" />
+          <img className="w-100" src={movie.image} />
           <h2>{movie.title}</h2>
           <p>{movie.description}</p>
           <h4>{movie.genre}</h4>
@@ -83,19 +76,6 @@ export const MovieView = ({ movies }) => {
           }
         </div>
       </Col>
-
-
     </>
   );
 };
-
-// MovieView.propTypes = {
-//   movies: PropTypes.arrayOf(PropTypes.shape({
-//     id: PropTypes.string.isRequired,
-//     title: PropTypes.string.isRequired,
-//     description: PropTypes.string.isRequired,
-//     genre: PropTypes.string.isRequired,
-//     director: PropTypes.string.isRequired,
-//     image: PropTypes.string.isRequired
-//   }).isRequired)
-// };

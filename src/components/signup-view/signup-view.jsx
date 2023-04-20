@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
@@ -28,12 +27,10 @@ export const SignupView = () => {
     }).then((response) => {
       if (response.ok) {
         alert("Signup successful");
+        window.location.reload();
       } else {
         alert("Signup failed");
       }
-    }).then(() => {
-      localStorage.clear();
-      window.location.reload(true);
     })
       .catch((e) => console.error(e));
   };
@@ -54,7 +51,7 @@ export const SignupView = () => {
       <Form.Group controlId="formPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
@@ -81,7 +78,6 @@ export const SignupView = () => {
           required
         />
       </Form.Group>
-
       <Button variant="primary" type="submit">Submit</Button>
     </Form>
   );
