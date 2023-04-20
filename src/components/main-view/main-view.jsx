@@ -19,7 +19,7 @@ export const MainView = () => {
     fetch("https://myflixphilipp.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
-        const moviesFromApi = data.movies.map((movie) => {
+        const moviesFromApi = data.map((movie) => {
           return {
             id: movie.key,
             image: movie.ImagePath,

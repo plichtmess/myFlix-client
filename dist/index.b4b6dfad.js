@@ -27179,7 +27179,7 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://myflixphilipp.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            const moviesFromApi = data.movies.map((movie)=>{
+            const moviesFromApi = data.map((movie)=>{
                 return {
                     id: movie.key,
                     image: movie.ImagePath,
@@ -27385,7 +27385,7 @@ const MovieCard = ({ movie  })=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                         to: `/movies/${encodeURIComponent(movie.id)}`,
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)(Button, {
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "link",
                             children: "Show Details"
                         }, void 0, false, {
