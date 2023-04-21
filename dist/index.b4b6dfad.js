@@ -27181,7 +27181,7 @@ const MainView = ()=>{
     const [user, setUser] = (0, _react.useState)(storedUser ? JSON.parse(storedUser) : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
     (0, _react.useEffect)(()=>{
-        if (!token) return;
+        // if (!token) return;
         fetch("https://myflixphilipp.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.map((movie)=>{
                 return {
@@ -43010,50 +43010,42 @@ const MovieView = ({ movies , user , token  })=>{
     const { movieId  } = (0, _reactRouterDom.useParams)();
     console.log("this.context:", movieId);
     const movie = movies.find((m)=>m.id === movieId);
-    // const addFav = () => {
-    //   fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-    //     method: "POST",
-    //     headers: { Authorization: `Bearer ${token} ` }
-    //   })
-    //     .then(response => {
-    //       if (response.ok) {
-    //         return response.json();
-    //       } else {
-    //         alert("Failed");
-    //         return false;
-    //       }
-    //     })
-    //     .then(user => {
-    //       if (user) {
-    //         alert("Movie added to favorites");
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       console.error(e);
-    //     });
-    // }
-    // const deleteFav = () => {
-    //   fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-    //     method: "DELETE",
-    //     headers: { Authorization: `Bearer ${token}` }
-    //   })
-    //     .then(response => {
-    //       if (response.ok) {
-    //         return response.json();
-    //       } else {
-    //         alert("Failed");
-    //         return false;
-    //       }
-    //     })
-    //     .then(user => {
-    //       if (user) {
-    //         alert("Deleted movie from favorites");
-    //       }
-    //     })
-    //     .catch((e) => {
-    //       console.error(e);
-    //     });
-    // }
+    const addFav = ()=>{
+        fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token} `
+            }
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else {
+                alert("Failed");
+                return false;
+            }
+        }).then((user)=>{
+            if (user) alert("Movie added to favorites");
+        }).catch((e)=>{
+            console.error(e);
+        });
+    };
+    const deleteFav = ()=>{
+        fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            if (response.ok) return response.json();
+            else {
+                alert("Failed");
+                return false;
+            }
+        }).then((user)=>{
+            if (user) alert("Deleted movie from favorites");
+        }).catch((e)=>{
+            console.error(e);
+        });
+    };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
@@ -43496,11 +43488,13 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 var _movieCard = require("../movie-card/movie-card");
+var _s = $RefreshSig$();
 const ProfileView = ({ user , token , movies , onLoggedOut  })=>{
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [birthday, setBirthday] = useState("");
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    const [email, setEmail] = (0, _react.useState)("");
+    const [birthday, setBirthday] = (0, _react.useState)("");
     console.log(movies);
     console.log(user);
     console.log(user.Username);
@@ -43616,6 +43610,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut  })=>{
         columnNumber: 5
     }, undefined);
 };
+_s(ProfileView, "jsOQN3GC2XlBG9ITlzCdpyJOnso=");
 _c = ProfileView;
 var _c;
 $RefreshReg$(_c, "ProfileView");

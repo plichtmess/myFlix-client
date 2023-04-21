@@ -6,10 +6,10 @@ import { MovieCard } from "../movie-card/movie-card";
 
 export const ProfileView = ({ user, token, movies, onLoggedOut }) => {
 
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   console.log(movies);
   console.log(user);

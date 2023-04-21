@@ -19,7 +19,7 @@ export const MainView = () => {
 
 
   useEffect(() => {
-    if (!token) return;
+    // if (!token) return;
 
     fetch("https://myflixphilipp.herokuapp.com/movies")
       .then((response) => response.json())

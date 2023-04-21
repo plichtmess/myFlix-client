@@ -10,51 +10,51 @@ export const MovieView = ({ movies, user, token }) => {
 
   const movie = movies.find((m) => m.id === movieId);
 
-  // const addFav = () => {
-  //   fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-  //     method: "POST",
-  //     headers: { Authorization: `Bearer ${token} ` }
-  //   })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         alert("Failed");
-  //         return false;
-  //       }
-  //     })
-  //     .then(user => {
-  //       if (user) {
-  //         alert("Movie added to favorites");
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.error(e);
-  //     });
-  // }
+  const addFav = () => {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${token} ` }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed");
+          return false;
+        }
+      })
+      .then(user => {
+        if (user) {
+          alert("Movie added to favorites");
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
 
-  // const deleteFav = () => {
-  //   fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
-  //     method: "DELETE",
-  //     headers: { Authorization: `Bearer ${token}` }
-  //   })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         alert("Failed");
-  //         return false;
-  //       }
-  //     })
-  //     .then(user => {
-  //       if (user) {
-  //         alert("Deleted movie from favorites");
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.error(e);
-  //     });
-  // }
+  const deleteFav = () => {
+    fetch(`https://myflixphilipp.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert("Failed");
+          return false;
+        }
+      })
+      .then(user => {
+        if (user) {
+          alert("Deleted movie from favorites");
+        }
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+  }
 
   return (
     <Row>
