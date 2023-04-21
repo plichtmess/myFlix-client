@@ -31,12 +31,11 @@ export const UserUpdate = ({ user, token, onLoggedOut }) => {
       .then(response => {
         if (response.ok)
           return response.json();
-        // alert("Successfully updated User Information");
-        // window.location.reload();
       }).then((data) => {
         if (data) {
           localStorage.setItem("user", JSON.stringify(data));
           alert("Your info is updated!");
+          window.location.reload();
         }
         else {
           alert("Failed updating User Information");
@@ -62,15 +61,13 @@ export const UserUpdate = ({ user, token, onLoggedOut }) => {
       if (response.ok) {
         alert("User was deleted");
       }
-      // }).then((data) => {
-      //   if (data) {
-      //     localStorage.clear("user", JSON.stringify(data));
-      //     alert("User was deleted");
-      //     window.location.reload();
-      //   } else {
-      //     alert("Failed deleting user");
-      //   }
-      // })
+    }).then((data) => {
+      if (data) {
+        localStorage.clear("user", JSON.stringify(data));
+        alert("User was deleted");
+        // } else {
+        //   alert("Failed deleting user");
+      }
     })
       .catch((e) => console.error(e));
 
@@ -98,7 +95,7 @@ export const UserUpdate = ({ user, token, onLoggedOut }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-          // minLength="5"
+            minLength="5"
           />
         </Form.Group>
 
