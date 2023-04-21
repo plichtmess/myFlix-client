@@ -14,7 +14,7 @@ export const MovieCard = ({ movie }) => {
         <Card.Img variant="top" src={movie.image} />
         <Card.Body>
           <Card.Title>{movie.title}</Card.Title>
-          {/* <Button variant="primary">Show Details</Button> */ç}
+          {/* <Button variant="primary">Show Details</Button> */}
         </Card.Body>
       </Card>
     </Link>
