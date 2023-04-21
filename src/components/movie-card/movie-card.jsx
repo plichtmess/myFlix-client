@@ -9,15 +9,15 @@ export const MovieCard = ({ movie }) => {
 
   console.log(movie.id);
   return (
-    <Card className="h-100">
-      <Card.Img variant="top" src={movie.image} />
-      <Card.Body>
-        <Card.Title>{movie.title}</Card.Title>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
-          <Button variant="primary">Show Details</Button>
-        </Link>
-      </Card.Body>
-    </Card>
+    <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+      <Card className="h-100">
+        <Card.Img variant="top" src={movie.image} />
+        <Card.Body>
+          <Card.Title>{movie.title}</Card.Title>
+          {/* <Button variant="primary">Show Details</Button> */}
+        </Card.Body>
+      </Card>
+    </Link>
   );
 };
 
