@@ -17,9 +17,13 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? JSON.parse(storedUser) : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
 
+  const updatingUser = (user) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  }
 
   useEffect(() => {
-    // if (!token) return;
+    if (!token) return;
 
     fetch("https://myflixphilipp.herokuapp.com/movies")
       .then((response) => response.json())
@@ -75,7 +79,7 @@ export const MainView = () => {
                     <Navigate to="/" />
                   ) : (
                     <Col md={5}>
-                      <LoginView onLoggedIn={(user, token) => {
+                      <LoginView onLoggedIn={() => {
                         setUser(user);
                         setToken(token);
                       }}
@@ -99,6 +103,7 @@ export const MainView = () => {
                         movies={movies}
                         user={user}
                         token={token}
+                        updatingUser={updatingUser}
                       />
                     </Col>
                   )}
