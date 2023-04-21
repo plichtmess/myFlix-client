@@ -22,12 +22,19 @@ export const LoginView = ({ onLoggedIn }) => {
       },
       body: JSON.stringify(data)
     })
-      .then((response) => {
-        if (response.ok) {
-          onLoggedIn(username);
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.user) {
+          localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", data.token);
+          onLoggedIn(data.user, data.token);
+          window.location.reload();
         } else {
           alert("Login failed");
         }
+      })
+      .catch(e => {
+        alert("Something went wrong");
       });
   };
 
